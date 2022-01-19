@@ -1,4 +1,6 @@
+
 #define _GNU_SOURCE 1
+
 #include<sys/types.h>
 #include<sys/socket.h>
 #include<netinet/in.h>
@@ -7,14 +9,15 @@
 #include<iostream>
 #include<stdio.h>
 #include<unistd.h>
+#include<unistd.h>
 #include<errno.h>
 #include<string.h>
 #include<fcntl.h>
 #include<stdlib.h>
 #include<poll.h>
-using namespace std;
-#define BUFFER_SIZE 64
 
+#define BUFFER_SIZE 64
+using namespace std;
 
 int main(int argc , char * argv[])
 {
@@ -57,7 +60,7 @@ int main(int argc , char * argv[])
     char read_buf[BUFFER_SIZE];
     int pipefd[2];
     int ret = pipe(pipefd);
-    assert(ret != -1);
+    assert(ret !=-1);
     while (1)
     {
         ret = poll(fds, 2, -1);
@@ -78,7 +81,7 @@ int main(int argc , char * argv[])
         {
 
             memset(read_buf, '\0', BUFFER_SIZE);
-            recv(fds[1].fd, read_buf, BUFFER_SIZE - 1 ,0);
+            recv(fds[1].fd, read_buf, BUFFER_SIZE - 1,0);
             cout << read_buf << endl;
 
         }
