@@ -1,7 +1,4 @@
-
-
-
-##define _GNU_SOURCE 1
+#define _GNU_SOURCE 1
 #include<sys/types.h>
 #include<sys/socket.h>
 #include<netinet/in.h>
@@ -15,12 +12,7 @@
 #include<fcntl.h>
 #include<stdlib.h>
 #include<poll.h>
-
-
-
-
-
-
+using namespace std;
 #define BUFFER_SIZE 64
 
 
@@ -30,7 +22,7 @@ int main(int argc , char * argv[])
 
     if(argc <=2)
     {
-        cout<<"usage :"<<<<"ip_adderss port_number\n"<<endl;
+        cout<<"usage :"<<basename(argv[0])<<"ip_adderss port_number\n"<<endl;
         return 1;
 
     }
@@ -85,7 +77,7 @@ int main(int argc , char * argv[])
         else if (fds[1].revents & POLLIN)
         {
 
-            memset(read_buf, '\0', BUFFER_SIZE)
+            memset(read_buf, '\0', BUFFER_SIZE);
             recv(fds[1].fd, read_buf, BUFFER_SIZE - 1 ,0);
             cout << read_buf << endl;
 
