@@ -28,7 +28,7 @@ int main(int argc , char * argv[])
 {
 
 
-    if(argv <=2)
+    if(argc <=2)
     {
         cout<<"usage :"<<<<"ip_adderss port_number\n"<<endl;
         return 1;
@@ -65,10 +65,10 @@ int main(int argc , char * argv[])
     char read_buf[BUFFER_SIZE];
     int pipefd[2];
     int ret = pipe(pipefd);
-    assert(ret != 1);
+    assert(ret != -1);
     while (1)
     {
-        ret = poll(fd, 2, -1);
+        ret = poll(fds, 2, -1);
         if (ret < 0)
         {
             cout << "poll failure\n";
@@ -86,7 +86,7 @@ int main(int argc , char * argv[])
         {
 
             memset(read_buf, '\0', BUFFER_SIZE)
-            recv(fds[1].fd, read_buf, BUFFER_SIZE - 1);
+            recv(fds[1].fd, read_buf, BUFFER_SIZE - 1 ,0);
             cout << read_buf << endl;
 
         }
