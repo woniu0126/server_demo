@@ -3,15 +3,25 @@
 
 ##define _GNU_SOURCE 1
 #include<sys/types.h>
+#include<sys/socket.h>
+#include<netinet/in.h>
+#include<arpa/inet.h>
+#include<assert.h>
+#include<iostream>
+#include<stdio.h>
+#include<unistd.h>
+#include<errno.h>
+#include<string.h>
+#include<fcntl.h>
+#include<stdlib.h>
+#include<poll.h>
 
 
 
 
 
 
-
-
-#define BUFFER_SIZE 1024
+#define BUFFER_SIZE 64
 
 
 int main(int argc , char * argv[])
@@ -47,7 +57,7 @@ int main(int argc , char * argv[])
 
     pollfd fds[2];
     fds[0].fd = 0;
-    fds[0].events = 0;
+    fds[0].events = POLLIN;
     fds[0].revents = 0;
     fds[1].fd = sockfd;
     fds[1].events = POLLIN | POLLRDHUP;
